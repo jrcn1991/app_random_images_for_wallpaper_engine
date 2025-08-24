@@ -1,124 +1,159 @@
 # Random Photos • For Wallpaper Engine
 
-![App Logo](icon.png) 
+![App Logo](docs/icon.png)
 
-README Gerado automaticamente  
-Um utilitário desenvolvido em **Python + PySide6** que automatiza a troca de imagens e vídeos no **Wallpaper Engine**.  
-O programa permite configurar múltiplos monitores, alternar wallpapers em intervalos definidos, aplicar efeitos de *fade* suave e salvar diferentes perfis de configuração.
+A utility developed in **Python + PySide6** that automates switching images and videos in **Wallpaper Engine**.  
+It was created for those who use Wallpaper Engine but don’t want to be stuck with a single set of static images or manually change wallpapers.
 
----
-
-## ✨ Funcionalidades
-
-- Suporte a múltiplos monitores.  
-- Suporte a imagens (`.png`, `.jpg`, `.jpeg`, `.gif`, `.bmp`) e vídeos (`.mp4`).  
-- Alternância automática por tempo configurável.  
-- Opção de **shuffle** (ordem aleatória).  
-- Efeito de *fade in/out* suave ao trocar wallpapers.  
-- Ícone na bandeja do sistema para rodar em segundo plano.  
-- Configurações salvas em JSON para reutilizar depois.  
-- Prevenção de múltiplas instâncias (não abre mais de uma vez).  
+The program allows configuring multiple monitors, rotating images/videos at defined intervals, applying *fade* effects for smoother transitions, and saving configurations for later use.
 
 ---
 
-## 📦 Instalação
+## ✨ Features
 
-1. Certifique-se de ter o **Wallpaper Engine** instalado e rodando.  
-2. Baixe a versão compilada (`.exe`) ou rode direto via Python:
+- Multi-monitor support.  
+- Accepts images (`.png`, `.jpg`, `.jpeg`, `.gif`, `.bmp`) and videos (`.mp4`).  
+- Automatic switching at configurable intervals.  
+- **Shuffle** option to randomize the image order.  
+- *Fade in/out* effect for smooth transitions (when supported by the wallpaper).  
+- System tray icon to run in the background.  
+- Persistent JSON configurations, easy to save and load.  
+
+---
+
+## 📦 Installation
+
+### Option 1: Using the executable (.exe)
+
+1. [Download the executable from the Releases section](https://github.com/jrcn1991/app_random_images_for_wallpaper_engine/releases/latest).  
+2. Place the executable in any folder of your choice (the app is portable).  
+3. Double-click to start.  
+4. If you want it to run with Windows, manually add it to the **Startup** folder or configure it via Task Scheduler.  
+
+### Option 2: Running from source code (Python)
+
+1. Install Python 3.9+ on Windows.  
+2. Install dependencies:  
    ```bash
    pip install PySide6
-   python main.py
    ```
-3. Ao empacotar para distribuição use:
+3. Run the main script:  
    ```bash
-   pyinstaller --onefile --windowed --icon=icon.ico main.py
+   python wallpaper_engine_trocar_img_app.py
    ```
 
 ---
 
-## 🚀 Como usar
+## 🚀 Structure and Usage
 
-### 1. Adicionar um monitor
-- Clique em **Add Monitor**.  
-- Defina o número do monitor (ex.: `1`, `2`...).  
+### 1. Add monitor
+- Click **Add Monitor** to include a new monitor.  
+- Enter the monitor number according to the Windows configuration (e.g., `1`, `2`, etc.).  
 
-### 2. Campos principais
-| Campo                        | O que faz                                                                 |
-|------------------------------|---------------------------------------------------------------------------|
-| **Wallpaper Engine executable** | Caminho para o `wallpaper32.exe` ou `wallpaper64.exe` do Wallpaper Engine. |
-| **Monitor**                  | Número do monitor que receberá os wallpapers.                            |
-| **Interval (s)**             | Intervalo em segundos entre cada troca de wallpaper.                      |
-| **Enable fade**              | Ativa/desativa o efeito de fade suave.                                    |
-| **Fade name**                | Nome da propriedade de fade (em geral `opaimg`).                          |
-| **Fade step**                | Incremento usado para suavizar o fade (quanto menor, mais suave).         |
-| **Shuffle images**           | Embaralha a ordem das imagens em vez de seguir sequência.                  |
-| **Extensions**               | Extensões aceitas para arquivos (separe por vírgula).                     |
-| **Props (key=path, 1 per line)** | Lista de propriedades do Wallpaper Engine. Exemplo: <br> `_11=C:/Users/User/Pictures` <br> `_169=C:/Wallpapers`. |
+### 2. Main fields
 
-### 3. Botões principais
-- **Start** → inicia a troca automática de wallpapers.  
-- **Stop** → interrompe o processo (aplicando o fade final).  
-- **Load / Save** → carregar ou salvar configurações JSON.  
-- **Autoplay** → se marcado, o app inicia direto em segundo plano.  
-- **About** → mostra informações do app.  
+| Field                           | Detailed description                                                                                                                                 |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Wallpaper Engine executable** | Path to `wallpaper32.exe` or `wallpaper64.exe`, located in the Wallpaper Engine installation folder.                                                   |
+| **Monitor**                     | Number of the monitor that will receive the wallpapers.                                                                                              |
+| **Interval (s)**                | Interval in seconds for automatic switching. Suggested default: `1800` (30 minutes).                                                                 |
+| **Enable fade (Optional)**      | If enabled, activates fade effect. Only works if the wallpaper supports opacity for images.                                                           |
+| **Fade name (Optional)**        | Name of the opacity property. Usually `opaimg`, but varies by wallpaper.                                                                              |
+| **Fade step (Optional)**        | Increment used to smooth the fade. The smaller the value, the smoother and slower the transition.                                                      |
+| **Shuffle images**              | Randomizes the order of images. If disabled, the app follows alphabetical order.                                                                      |
+| **Extensions**                  | Accepted extensions. No need to change, already set with the most common formats.                                                                     |
+| **Props (key=path)**            | List of Wallpaper Engine properties. You must specify the key used by the wallpaper and the folder path where the images you want to use are stored. |
+
+#### Practical examples of **Props**
+- Steam wallpaper: [Example 1](https://steamcommunity.com/sharedfiles/filedetails/?id=342651164)  
+  ```txt
+  _11=E:/Random Photos/Win/img_right
+  _169=E:/Random Photos/Win/img_left
+  ```
+
+- Another wallpaper: [Example 2](https://steamcommunity.com/sharedfiles/filedetails/?id=3332091404)  
+  ```txt
+  customimageleft=E:/Random Photos/Win2/img_left2
+  customimageright=E:/Random Photos/Win2/img_right2
+  ```
 
 ---
 
-## 📂 Estrutura de configuração (JSON)
+### 3. Main buttons
+- **Start** → starts automatic wallpaper switching.  
+- **Stop** → stops execution (applying final fade if enabled).  
+- **Load / Save** → load or save your JSON configurations for future use.  
+- **Autoplay** → starts the app directly in the background.  
+- **About** → shows app information.  
 
-Exemplo de arquivo salvo:
+---
+
+## 🖼️ Interface and Demonstrations
+
+### Main screen
+![Screenshot](docs/telaconfig.png)  
+
+### Real-time operation
+*(Example with fade/shuffle disabled and 10s transition for demo purposes)*  
+![Demo GIF](docs/Final.gif)  
+
+### Note about Fade effect
+To use **fade**, the wallpaper must support opacity for images.  
+![Demo GIF](docs/Opacidade.gif)  
+- Go to the wallpaper settings in Wallpaper Engine.  
+- If there is an individual opacity adjustment for images, it means fade is supported.  
+- In this case, just identify the key in the wallpaper’s `project.json` and use it in `Fade name`.  
+
+---
+
+## 🔍 How to find Props keys
+
+1. Go to the **Wallpaper Engine** folder and open the `config.json` file.  
+2. Locate the `selectedwallpapers` section, which shows the path to the wallpaper’s `scene.json` or `scene.pkg` files.  
+3. Open the wallpaper’s `project.json`.  
+4. Inside, search for properties related to images. Example:  
+
 ```json
-{
-  "autoplay": true,
-  "monitors": [
-    {
-      "exe_path": "C:/Program Files (x86)/Steam/steamapps/common/wallpaper_engine/wallpaper32.exe",
-      "monitor": "1",
-      "props": {
-        "_11": "C:/Users/User/Pictures/Wallpapers",
-        "_169": "D:/Videos/Loops"
-      },
-      "passo_fade": "0.20",
-      "intervalo_segundos": 1800,
-      "aleatorio": true,
-      "fade": true,
-      "fadename": "opaimg",
-      "extensoes": [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".mp4"]
-    }
-  ]
+"_11": {
+  "text": "Image (small)",
+  "type": "scenetexture"
+},
+"_169": {
+  "text": "Image (big)",
+  "type": "scenetexture"
 }
 ```
 
----
-
-## 🖼️ Demonstração
-
-### Interface principal
-![Screenshot](docs/screenshot.png)  
-*(coloque aqui uma captura estática da janela principal)*
-
-### Funcionamento em tempo real
-![Demo GIF](docs/demo.gif)  
-*(coloque aqui um GIF mostrando o fade/shuffle em ação)*
+These keys (`_11` and `_169`) are the ones you should use in the **Props** field.
 
 ---
 
-## ⚠️ Requisitos
+## 🛠️ Tips and Troubleshooting
 
-- Windows 10/11  
-- Wallpaper Engine (rodando)  
-- Python 3.9+ (se usar versão em código)  
+- **Fade doesn’t work** → Check if the wallpaper really supports opacity adjustment for images.  
+- **Nothing happens when clicking Start** → Make sure you entered the correct path to `wallpaper32.exe` or `wallpaper64.exe`.  
+- **Images don’t load** → Check if the extensions are correct and if the paths in Props exist.  
+- **Two monitors, but only one changes wallpaper** → Check if you configured both monitors separately in the app.  
+- **Want to start with Windows** → Place the `.exe` inside the `shell:startup` folder or configure it in Task Scheduler.  
 
 ---
 
-## 👨‍💻 Autor
+## ⚠️ Requirements
+
+- Windows 10 or 11.  
+- Wallpaper Engine running.  
+- Python 3.9+ (only if running from source).  
+
+---
+
+## 👨‍💻 Author
 
 **Rafael Neves**  
 🌐 [rafaelneves.dev.br](https://rafaelneves.dev.br)  
 
 ---
 
-## 📜 Licença
+## 📜 License
 
-Este projeto é distribuído sob a licença MIT.  
-Sinta-se livre para usar, modificar e compartilhar.
+Distributed under the **MIT** license.  
+You may freely use, modify, and share.  
