@@ -1,0 +1,45 @@
+{
+  "autoplay": true,
+  "monitors": [
+    {
+      "exe_path": "D:/Steam/steamapps/common/wallpaper_engine/wallpaper32.exe",
+      "monitor": "1",
+      "props": {
+        "_11": "E:/Random Photos/Win/img_right",
+        "_169": "E:/Random Photos/Win/img_left"
+      },
+      "passo_fade": "0.20",
+      "intervalo_segundos": 1800,
+      "aleatorio": false,
+      "fade": true,
+      "fadename": "opaimg",
+      "extensoes": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".gif",
+        ".mp4"
+      ]
+    },
+    {
+      "exe_path": "D:/Steam/steamapps/common/wallpaper_engine/wallpaper32.exe",
+      "monitor": "2",
+      "props": {
+        "customimageleft": "E:/Random Photos/Win2/img_left2",
+        "customimageright": "E:/Random Photos/Win2/img_right2"
+      },
+      "passo_fade": "0.20",
+      "intervalo_segundos": 1800,
+      "aleatorio": true,
+      "fade": true,
+      "fadename": "opaimg",
+      "extensoes": [
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".gif",
+        ".mp4"
+      ]
+    }
+  ]
+}
