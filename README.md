@@ -1,4 +1,4 @@
-# Random Photos • For Wallpaper Engine
+# Random Images • For Wallpaper Engine
 
 ![App Logo](docs/icon.png)
 
@@ -65,7 +65,7 @@ The program allows configuring multiple monitors, rotating images/videos at defi
 | **Props (key=path)**            | List of Wallpaper Engine properties. You must specify the key used by the wallpaper and the folder path where the images you want to use are stored. |
 
 #### Practical examples of **Props**
-- Steam wallpaper: [Example 1](https://steamcommunity.com/sharedfiles/filedetails/?id=342651164)  
+- Steam wallpaper: [Example 1](https://steamcommunity.com/sharedfiles/filedetails/?id=3426511645)  
   ```txt
   _11=E:/Random Photos/Win/img_right
   _169=E:/Random Photos/Win/img_left
