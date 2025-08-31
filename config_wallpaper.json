@@ -10,7 +10,7 @@
       },
       "passo_fade": "0.20",
       "intervalo_segundos": 1800,
-      "aleatorio": false,
+      "aleatorio": true,
       "fade": true,
       "fadename": "opaimg",
       "extensoes": [
